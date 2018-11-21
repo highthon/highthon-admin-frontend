@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { FETCH_USER_INFO } from './actions';
 
 class App extends Component {
+  onClickButton() {
+    this.props.fetchUserInfo();
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>{this.props.userInfo.name}</h1>
+        <h1>{this.props.userInfo.school}</h1>
+        <button type="button" onClick={this.onClickButton.bind(this)}>Click</button>
+        <Link to="/main">메인으로 가기</Link>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(state => {
+  return { userInfo: state.userInfo };
+}, dispatch => {
+  return {
+    fetchUserInfo() {
+      dispatch({
+        type: FETCH_USER_INFO,
+        data: {
+          name: 'seokjin',
+          school: 'DSM'
+        }
+      });
+    }
+  }
+})(App);
