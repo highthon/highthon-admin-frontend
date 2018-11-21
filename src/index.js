@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers'
+
+import createSagaMiddleware from 'redux-saga';
+import sagas from './sagas';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -12,7 +15,10 @@ import { NotFound, Main } from './pages';
 
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducers);
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(sagas);
 
 ReactDOM.render(
 <Provider store={store}>
