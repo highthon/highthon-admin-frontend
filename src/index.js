@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers'
+import { FETCH_USER_INFO_FROM_LOCAL } from './actions';
 
 import createSagaMiddleware from 'redux-saga';
 import sagas from './sagas';
@@ -19,6 +20,10 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(sagas);
+
+store.dispatch({
+    type: FETCH_USER_INFO_FROM_LOCAL
+});
 
 ReactDOM.render(
 <Provider store={store}>

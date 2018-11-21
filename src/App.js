@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FETCH_USER_INFO } from './actions';
+import { FETCH_USER_INFO_REQUEST } from './actions';
 
 class App extends Component {
   onClickButton() {
@@ -26,7 +26,7 @@ export default connect(state => {
   return {
     fetchUserInfo() {
       dispatch({
-        type: FETCH_USER_INFO,
+        type: FETCH_USER_INFO_REQUEST,
         data: {
           name: 'seokjin',
           school: 'DSM'

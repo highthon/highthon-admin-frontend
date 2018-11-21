@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { FETCH_USER_INFO } from '../actions';
+import { FETCH_USER_INFO_REQUEST } from '../actions';
 
 const Input = styled.input`
     padding: 16px;
@@ -91,7 +91,6 @@ const LoginForm = class extends Component{
         event.preventDefault();
 
         this.props.fetchUserInfo({...this.state});
-        // request call logic
     }
 }
 
@@ -99,7 +98,7 @@ export default connect(state => ({}), dispatch => {
     return {
         fetchUserInfo(formInfo) {
             dispatch({ 
-                type: FETCH_USER_INFO,
+                type: FETCH_USER_INFO_REQUEST,
                 payload: { formInfo }
             });
         }
