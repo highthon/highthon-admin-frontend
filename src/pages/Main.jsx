@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Login from './Login';
+import Applicants from './Applicants';
 
 const Main = ({ userInfo, isLogin }) => {
-    const displayMain = isLogin ? (<div>로그인됐따</div>) : (<Login/>)
+    const displayMain = isLogin ? (<Applicants/>) : (<Login/>)
     return(
         <div>
-            <Link to="">홈으로 가기</Link>
             {displayMain}
         </div>
     );
