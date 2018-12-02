@@ -28,7 +28,7 @@ const userInfo = (state = {}, action) => {
             return JSON.parse(localStorage.getItem('userInfo')) || {};
         } catch (error) {
             return state;
-        };
+        }
         default: 
             return state;
     }
