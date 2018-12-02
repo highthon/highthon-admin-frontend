@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 const ApplicationWrapper = styled.li`
     box-sizing: border-box;

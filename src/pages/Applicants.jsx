@@ -8,6 +8,7 @@ import {
 } from '../actions';
 
 import Application from '../components/Application';
+import MailEditor from '../components/MailEditor';
 
 const WrapSelectBox = styled.div`
     position: relative;
@@ -151,6 +152,7 @@ const Applicant = class extends Component{
               <ApplicationList>
                   {maybeApplicantList}
               </ApplicationList>
+              <MailEditor/>
           </ApplicantWrapper>
         );
     }  
