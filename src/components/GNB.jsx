@@ -31,7 +31,7 @@ const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: #b3b3b3;
 
-    &:not(.active-link){
+    &.active-link{
         color: #000000;
         border-bottom: 3px solid #000000;
     }
@@ -70,10 +70,10 @@ const GNB = () => {
         <Navigation>
             <Logo to="/">Highthon</Logo>
             <StyledLink activeClassName="active-link" to="/main">신청자 관리</StyledLink>
-            <StyledLink activeClassName="active-link" to="/">후원사 관리</StyledLink>
-            <StyledLink activeClassName="active-link" to="/">공지사항</StyledLink>
-            <StyledLink activeClassName="active-link" to="/">심사</StyledLink>
-            <StyledLink activeClassName="active-link" to="/">당일사용</StyledLink>
+            <StyledLink activeClassName="active-link" to="/sponsor">후원사 관리</StyledLink>
+            <StyledLink activeClassName="active-link" to="/notice">공지사항</StyledLink>
+            <StyledLink activeClassName="active-link" to="/judge">심사</StyledLink>
+            <StyledLink activeClassName="active-link" to="/dday">당일사용</StyledLink>
         </Navigation>
         <Navigation>
             <LogoutLink href="/signout">로그아웃</LogoutLink>
