@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 
 import Login from './Login';
 import Applicants from './Applicants';
+import GNB from '../components/GNB';
 
 const Main = ({ userInfo, isLogin }) => {
     const displayMain = isLogin ? (<Applicants/>) : (<Login/>)
     return(
         <div>
+            <GNB/>
             {displayMain}
         </div>
     );

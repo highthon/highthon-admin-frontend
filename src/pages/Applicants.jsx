@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import GNB from '../components/GNB';
 
 import { 
-    FETCH_APPLICANT_LIST_REQUEST
+    FETCH_APPLICANT_LIST_REQUEST,
+    OPEN_MAIL_EDITOR,
+    CLOSE_MAIL_EDIOTR
 } from '../actions';
 
 import Application from '../components/Application';
@@ -116,15 +117,17 @@ const Applicant = class extends Component{
         super(props);
 
         this.props.fetchApplicantList();
+        this.onClickSendMailButton = this.onClickSendMailButton.bind(this);
+        this.closeMailEditor = this.closeMailEditor.bind(this);
     }
 
     render() {
         const applicantList = this.props.applicantList || [];
         const maybeApplicantList = applicantList.map((applicant, index) => (<Application key={`application-${index}`} {...applicant}/>));
+        const maybeMailEditor = this.props.isOpenMailEditor ? <MailEditor closeMailEditor={this.closeMailEditor} /> : null;
 
         return(
           <ApplicantWrapper>
-              <GNB/>
               <FunctionBar>
                 <WrapSelectBox>
                     <SelectBox>
@@ -141,7 +144,7 @@ const Applicant = class extends Component{
                     </SelectBox>
                 </WrapSelectBox>
                 <ButtonGroups>
-                    <SendMailButton>
+                    <SendMailButton onClick={this.onClickSendMailButton}>
                         메일 보내기
                     </SendMailButton>
                     <DeleteButton>
@@ -152,19 +155,36 @@ const Applicant = class extends Component{
               <ApplicationList>
                   {maybeApplicantList}
               </ApplicationList>
-              <MailEditor/>
+              {maybeMailEditor}
           </ApplicantWrapper>
         );
-    }  
+    }
+    
+    onClickSendMailButton() {
+        this.props.setMailEditorState(true);
+    }
+
+    closeMailEditor() {
+        this.props.setMailEditorState(false);
+    }
 };
 
-export default connect(state => ({ applicantList: state.applicantList }), 
+export default connect(state => ({ 
+    applicantList: state.applicantList,
+    isOpenMailEditor: state.mailEditor.isOpen
+}), 
 dispatch => {
     return {
         fetchApplicantList(options = {}){
             dispatch({
                 type: FETCH_APPLICANT_LIST_REQUEST,
                 payload: options
+            });
+        },
+
+        setMailEditorState(shouldOpen = true) {
+            dispatch({
+                type: shouldOpen ? OPEN_MAIL_EDITOR : CLOSE_MAIL_EDIOTR
             });
         }
     };

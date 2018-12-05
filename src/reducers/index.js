@@ -7,7 +7,9 @@ import {
 
     FETCH_APPLICANT_LIST_REQUEST,
     FETCH_APPLICANT_LIST_SUCCEEDED,
-    FETCH_APPLICANT_LIST_FAILED
+    FETCH_APPLICANT_LIST_FAILED,
+    OPEN_MAIL_EDITOR,
+    CLOSE_MAIL_EDIOTR
 } from '../actions';
 
 
@@ -47,9 +49,34 @@ const applicantList = (state = [], action) => {
     }
 }
 
+const mailEditor = (state = {}, action) => {
+    const defaultState = {
+        isOpen: false,
+        senderList: [],
+        title: '',
+        description: ''
+    };
+
+    switch(action.type) {
+        case OPEN_MAIL_EDITOR: 
+            return {
+                ...state,
+                isOpen: true
+            };
+        case CLOSE_MAIL_EDIOTR: 
+            return {
+                ...state,
+                isOpen: false
+            };
+        default:
+            return defaultState;
+    }
+}
+
 const reducers = combineReducers({
     userInfo,
-    applicantList
+    applicantList,
+    mailEditor
 });
 
 export default reducers;

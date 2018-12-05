@@ -16,6 +16,7 @@ const EmailEditorWrapper = styled.div`
 const Header = styled.header`
     padding: 18px 32px;
     background: #649eff;
+    overflow: hidden;
 `;
 
 const Title = styled.h3`
@@ -23,6 +24,17 @@ const Title = styled.h3`
     font-size: 16px;
     line-height: 32px;
     color: #ffffff;
+    float: left;
+`;
+
+const CloseButton = styled.button`
+    padding: 0;
+    margin: 2px 0 0;
+    font-size: 20px;
+    color: #ffffff;
+    background: #649eff;
+    border: none;
+    float: right;
 `;
 
 const Content = styled.div`
@@ -127,6 +139,7 @@ const MailEditor = class extends Component{
             <EmailEditorWrapper>
                 <Header>
                     <Title>메일 쓰기</Title>
+                    <CloseButton type="button" onClick={this.props.closeMailEditor}>X</CloseButton>
                 </Header>
                 <Content>
                     <EmailLabel>
